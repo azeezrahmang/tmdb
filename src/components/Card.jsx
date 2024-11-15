@@ -2,6 +2,7 @@ import React from 'react';
 import star from '../assets/star.png';
 import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import defaultBanner from '../assets/movie-banner.jpg'
 
 const Card = ({ movies }) => {
 
@@ -19,16 +20,26 @@ const Card = ({ movies }) => {
 
 
     return (
-        <Link to={`movies/${id}`}>
+        <Link to={`/movies/${id}`}>
         {/* <Link to="movies/anime"> */}
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img className="rounded-t-lg" src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="moviebanner" />
-            </a>
+            
+                <img className="rounded-t-lg max-h-[214px] w-full object-cover" 
+                    src= {
+                        backdrop_path ? (
+                            `https://image.tmdb.org/t/p/w500${backdrop_path}`
+                        ) : (
+                            defaultBanner
+                        )
+                    }
+                    // {`https://image.tmdb.org/t/p/w500${backdrop_path}`} 
+                    alt="moviebanner" 
+                />
+            
             <div className="p-5">
-                <a href="#">
+                
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-                </a>
+                
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{overview}</p>
                 <div className='flex items-center gap-2 pb-2'>
                     <img src={star} />
