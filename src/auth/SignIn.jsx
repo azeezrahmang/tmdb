@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import loader from '../assets/loader.gif';
+import Loader from '../components/Loader';
+
 
 const SignIn = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [input, setInput] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,6 +23,13 @@ const SignIn = () => {
       ...data, [name]: value
     }))
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, [])
+  
 
   
   
@@ -85,6 +93,7 @@ const SignIn = () => {
         !isLoading ? (
           <form onSubmit={handleLogin}>
             <div className="flex gap-y-4 justify-center flex-col items-center mx-auto border border-[#1a34d3] rounded-[10px] p-[30px] px-[35px] w-[400px]">
+              <h2 class="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Login</h2>
               <div className='w-full'>
                 <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                 <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" name="email" onChange={handleChange} required />
@@ -105,9 +114,7 @@ const SignIn = () => {
             </div>
           </form>
         ) : (
-          <div className='bg-[#000]/[.6] absolute bottom-0 left-0 top-0 right-0 flex justify-center items-center'>
-            <img src={loader} alt="loader"/>
-          </div>
+          <Loader/>
         )
       }
     </div>

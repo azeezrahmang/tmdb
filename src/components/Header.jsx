@@ -47,9 +47,8 @@ const Header = () => {
         const data = event.target.search.value;
         setSearchVal(data);
         console.log(data);
-        navigate(`/search/movie?q=${searchVal}`)
         setSearchVal('');
-
+        navigate(`/search/movie?q=${searchVal}`)
     }
 
     const handleChange = () => {
@@ -76,8 +75,9 @@ const Header = () => {
     const LogoutButton = () => {
         if (user) {
             return (
-                <div className='auth text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'>
-                    <button onClick={handleLogout}>Logout</button>
+                <div>
+                    <button className='auth text-white bg-red-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700' 
+                        onClick={handleLogout}>Logout</button>
                 </div>
             )
         }
@@ -86,9 +86,9 @@ const Header = () => {
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <NavLink to="" href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <NavLink to="movies/nowplaying" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TMDB</span>
                 </NavLink>
                 <div className="flex md:order-2">
                     <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
@@ -109,6 +109,11 @@ const Header = () => {
                                 <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." name="search" value={searchVal}
                                     onChange={handleChange}
                                 />
+                                <div>
+                                    <button
+                                         className='auth text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+                                    >Search</button>
+                                </div>
                             </form>
                             {/* <div className='auth text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'>
                                 <button onClick={handleLogout}>Logout</button>

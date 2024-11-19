@@ -9,9 +9,12 @@ const MovieList = ({apiPath}) => {
     
 
     useEffect(() => {
+      setIsLoading(true);
       if(movies && movies.length > 0){
         console.log(movies);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
       }  
     }, [movies])
     

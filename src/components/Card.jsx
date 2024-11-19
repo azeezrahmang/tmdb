@@ -22,8 +22,7 @@ const Card = ({ movies }) => {
     return (
         <Link to={`/movies/${id}`}>
         {/* <Link to="movies/anime"> */}
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-custom">
                 <img className="rounded-t-lg max-h-[214px] w-full object-cover" 
                     src= {
                         backdrop_path ? (
